@@ -1,0 +1,13 @@
+node_modules/
+.next/
+out/
+build/
+.vercel/
+generated/prisma/
+.env
+.env.*
+!.env.example
+*.tsbuildinfo
+coverage/
+test-results/
+playwright-report/

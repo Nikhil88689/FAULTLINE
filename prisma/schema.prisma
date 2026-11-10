@@ -1,0 +1,44 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model ChaosExperiment {
+  id              String   @id @default(cuid())
+  title           String
+  targetService   String
+  faultType       String
+  status          String   @default("draft")
+  durationSeconds Int      @default(60)
+  createdAt       DateTime @default(now())
+
+  @@index([createdAt(sort: Desc)])
+}
+
+model Incident {
+  id                    String   @id
+  name                  String
+  timestamp             DateTime
+  occurredAt            DateTime?
+  severity              String
+  affectedServices      String[]
+  rootCause             String
+  failureConfiguration  Json
+  recoveryActions       Json
+  durationMs            Int
+  finalOutcome          String
+  metrics               Json
+  simulationStartMs     Int
+  simulationEndMs       Int
+  events                Json
+  replayFrames          Json
+  latencySamplesMs     Json?
+  createdAt             DateTime @default(now())
+
+  @@index([timestamp(sort: Desc)])
+  @@index([severity, timestamp(sort: Desc)])
+}

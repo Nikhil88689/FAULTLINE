@@ -1,0 +1,8 @@
+node_modules/
+.next/
+.vercel/
+generated/
+coverage/
+test-results/
+playwright-report/
+package-lock.json
